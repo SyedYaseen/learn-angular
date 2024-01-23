@@ -11,12 +11,4 @@ export class PhoneService {
   getPhonesList() {
     return this.http.get('https://dummyjson.com/products');
   }
-  saveToDb() {
-    this.getPhonesList().subscribe((data: any) => {
-      data?.products.forEach((phone: phone) => {
-        this.db.insertRec(phone);
-      });
-    });
-    this.db.syncDbs();
-  }
 }

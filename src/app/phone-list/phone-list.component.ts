@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PhoneService } from '../phone.service';
 import { phone } from '../interfaces/phone';
 import { CommonModule } from '@angular/common';
+import { PouchService } from '../database/pouch.service';
 
 @Component({
   selector: 'app-phone-list',
@@ -16,15 +17,21 @@ export class PhoneListComponent {
    *
    */
   phonesList: phone[] = [] as phone[];
-  constructor(private phonesvc: PhoneService) {}
+  constructor(private phonesvc: PhoneService, private db: PouchService) {}
 
-  ngOnInit() {
-    this.getPhones();
-  }
+  // ngOnInit() {
+  //   this.getPhones();
+  // }
   getPhones() {
     this.phonesvc.getPhonesList().subscribe((data: any) => {
       this.phonesList = data?.products as phone[];
-      this.phonesvc.saveToDb();
+      this.phonesList.forEach((phone: phone) => {
+        this.db.insertRec(phone);
+      });
     });
+  }
+
+  syncDb() {
+    this.db.syncDbs();
   }
 }

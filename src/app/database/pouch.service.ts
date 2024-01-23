@@ -8,19 +8,20 @@ export class PouchService {
   db: any;
   remoteDB: any;
   constructor() {
-    this.db = new PouchDB('phones');
-    this.remoteDB = new PouchDB('http://admin:admin@localhost:5984/myremotedb');
+    this.db = new PouchDB('phones6');
+    this.remoteDB = new PouchDB(
+      'http://admin:admin@localhost:5984/myremotedb6'
+    );
   }
 
   insertRec(data: phone) {
     this.db.post(data);
   }
-
-  insertDummyRec() {
-    this.db.post({ name: 'iphone' });
-  }
-
   syncDbs() {
-    this.db.sync(this.remoteDB);
+    console.log('saving to db');
+
+    this.db.sync(this.remoteDB, {
+      live: true,
+    });
   }
 }

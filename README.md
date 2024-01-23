@@ -1,3 +1,17 @@
+# CouchDb Notes
+
+After installing Couchdd, add the following to **index.html** inside the head tag. This stops ts from complaining.
+
+````<script>
+      window.global = window;
+    </script>```
+
+When replicating both ways:
+- When data is opened (without updates)m it is somehoe considered a change. This gets synced to indexedDb as new row.
+- Need figure out how to sync/ edit records by _id
+
+
+
 # LearnAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
@@ -26,3 +40,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 # learn-angular
+````
