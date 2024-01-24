@@ -27,4 +27,8 @@ export class PouchService {
       live: true,
     });
   }
+
+  getDocs() {
+    return this.db.allDocs();
+  }
 }

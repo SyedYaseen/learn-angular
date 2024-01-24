@@ -14,6 +14,7 @@ import { PouchService } from '../database/pouch.service';
 })
 export class PhoneListComponent {
   phonesList: phone[] = [] as phone[];
+  phoneListFromDB: any;
   testDate = Date.now();
   constructor(private phonesvc: PhoneService, private db: PouchService) {}
 
@@ -24,6 +25,12 @@ export class PhoneListComponent {
         this.db.insertRec(phone);
       });
     });
+
+    this.db.getDocs().then((data: any) => console.log(data));
+    // this.db.getDocs().subscribe((data: any) => {
+    //   this.phoneListFromDB = data;
+    //   console.log(this.phoneListFromDB);
+    // });
   }
 
   syncDb() {
