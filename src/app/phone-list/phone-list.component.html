@@ -1,6 +1,7 @@
 <p>phone-list works!</p>
 <button (click)="getPhones()">Get data</button>
 <button (click)="syncDb()">saveToDb</button>
+<p>{{ testDate | date : "medium" }}</p>
 <p *ngFor="let phone of phonesList">
   {{ phone.brand }}
 </p>

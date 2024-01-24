@@ -13,15 +13,10 @@ import { PouchService } from '../database/pouch.service';
   providers: [PhoneService],
 })
 export class PhoneListComponent {
-  /**
-   *
-   */
   phonesList: phone[] = [] as phone[];
+  testDate = Date.now();
   constructor(private phonesvc: PhoneService, private db: PouchService) {}
 
-  // ngOnInit() {
-  //   this.getPhones();
-  // }
   getPhones() {
     this.phonesvc.getPhonesList().subscribe((data: any) => {
       this.phonesList = data?.products as phone[];
