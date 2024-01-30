@@ -10,10 +10,10 @@ export class PouchService {
   db: any;
   remoteDB: any;
   constructor() {
-    this.db = new PouchDB('phones7');
-    this.db.crypto('this');
+    this.db = new PouchDB('phones9');
+    // this.db.crypto('this');
     this.remoteDB = new PouchDB(
-      'http://admin:admin@localhost:5984/myremotedb7'
+      'http://admin:admin@localhost:5984/myremotedb9'
     );
   }
 
@@ -23,9 +23,12 @@ export class PouchService {
   syncDbs() {
     console.log('saving to db');
 
-    this.db.sync(this.remoteDB, {
-      live: true,
-    });
+    this.db
+      .sync(this.remoteDB, {
+        live: true,
+      })
+      .on('paused', () => console.log('sync paused'))
+      .on('active', () => console.log('active now'));
   }
 
   getDocs() {

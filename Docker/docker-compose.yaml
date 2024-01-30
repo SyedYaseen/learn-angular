@@ -1,0 +1,23 @@
+version: "3"
+services:
+  couch-1:
+    image: couchdb
+    restart: always
+    ports:
+      - "5984:5984"
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
+    volumes:
+      - ./dbdata-1:/opt/couchdb/data
+
+  couch-2:
+    image: couchdb
+    restart: always
+    ports:
+      - "5985:5984"
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
+    volumes:
+      - ./dbdata-2:/opt/couchdb/data
