@@ -3,7 +3,6 @@ import { PhoneService } from '../phone.service';
 import { phone } from '../interfaces/phone';
 import { CommonModule } from '@angular/common';
 import { PouchService } from '../database/pouch.service';
-
 @Component({
   selector: 'app-phone-list',
   standalone: true,
